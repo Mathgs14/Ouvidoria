@@ -1,3 +1,7 @@
+/**
+ * This class represents the main application for a feedback system (Ouvidoria).
+ * It provides functionality for user authentication and interaction based on their role.
+ */
 package application;
 
 import java.util.Scanner;
@@ -8,17 +12,20 @@ import entities.Usuario;
 import util.MenuFunctions;
 
 public class Main {
+
+    /**
+     * The main method that initiates the application.
+     * @param args command line arguments
+     */
     public static void main(String[] args) {
         Ouvidoria ouvidoria = new Ouvidoria();
 
         int escolha = 0;
         while (escolha != 9){
             if(!ouvidoria.isLogged()){
-
                 escolha = authPage(ouvidoria);
             }
             else{
-
                 if(ouvidoria.userType().equals("entities.Funcionario")){
                     escolha = menuAdm(ouvidoria);
                 }else{
@@ -26,9 +33,13 @@ public class Main {
                 }
             }
         }
-
     }
 
+    /**
+     * Provides functionality for user authentication.
+     * @param ouvidoria The feedback system instance
+     * @return The user's choice
+     */
     public static int authPage(Ouvidoria ouvidoria) {
         int escolha;
         Scanner sc = new Scanner(System.in);
@@ -65,7 +76,11 @@ public class Main {
         return escolha;
     }
 
-
+    /**
+     * Provides functionality for administrator menu.
+     * @param ouvidoria The feedback system instance
+     * @return The user's choice
+     */
     public static int menuAdm(Ouvidoria ouvidoria){
         int escolha;
         Scanner sc = new Scanner(System.in);
@@ -87,14 +102,18 @@ public class Main {
 
             case 9 ->{}
 
-
-
             default -> System.out.println("escolha inválida");
         }
 
         return escolha;
     }
 
+    /**
+     * Provides functionality for student menu.
+     * @param ouvidoria The feedback system instance
+     * @param currentActive The currently logged in user
+     * @return The user's choice
+     */
     public static int menuAluno(Ouvidoria ouvidoria, Usuario currentActive){
         int escolha;
         Scanner sc = new Scanner(System.in);
@@ -117,7 +136,6 @@ public class Main {
             default -> System.out.println("escolha inválida");
         }
 
-        return escolha; 
+        return escolha;
     }
-
 }
